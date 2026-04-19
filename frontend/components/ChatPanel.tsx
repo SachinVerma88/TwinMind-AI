@@ -3,6 +3,8 @@
 import { formatShortTime } from "@/lib/format-time";
 import { useAppState } from "@/state/app-state";
 import { FormEvent, useEffect, useRef, useState } from "react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export function ChatPanel() {
   const { chatMessages, isChatLoading, sendChatPrompt } = useAppState();
@@ -23,6 +25,30 @@ export function ChatPanel() {
     void sendChatPrompt(prompt, prompt);
   };
 
+  const markdownComponents = {
+    table: ({ children }: any) => (
+      <table className="w-full border-collapse border border-gray-300 my-2">
+        {children}
+      </table>
+    ),
+    th: ({ children }: any) => (
+      <th className="border border-gray-300 px-2 py-1 bg-gray-100 text-left font-semibold">
+        {children}
+      </th>
+    ),
+    td: ({ children }: any) => (
+      <td className="border border-gray-300 px-2 py-1">
+        {children}
+      </td>
+    ),
+    p: ({ children }: any) => <p className="mb-2">{children}</p>,
+    ul: ({ children }: any) => <ul className="list-disc list-inside mb-2">{children}</ul>,
+    ol: ({ children }: any) => <ol className="list-decimal list-inside mb-2">{children}</ol>,
+    li: ({ children }: any) => <li className="mb-1">{children}</li>,
+    strong: ({ children }: any) => <strong className="font-bold">{children}</strong>,
+    em: ({ children }: any) => <em className="italic">{children}</em>,
+  };
+
   return (
     <section className="flex min-h-0 w-full flex-1 flex-col rounded-3xl bg-surface-container-high p-5 shadow-app-card md:p-6 lg:h-[calc(100dvh-8rem)] lg:max-h-[calc(100dvh-8rem)] lg:w-96 lg:shrink-0 xl:w-[400px]">
       <div className="mb-4 flex items-center gap-3 md:mb-6">
@@ -39,7 +65,7 @@ export function ChatPanel() {
             message.role === "assistant" ? (
               <div key={`${message.role}-${message.timestamp}`} className="flex max-w-[85%] flex-col items-start gap-1">
                 <div className="rounded-2xl rounded-tl-none border border-outline-variant/10 bg-surface-container-lowest p-3 text-sm leading-relaxed text-on-surface shadow-sm">
-                  {message.content}
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{message.content}</ReactMarkdown>
                 </div>
                 <span className="ml-1 text-[9px] text-on-surface-variant">
                   Assistant · {formatShortTime(message.timestamp)}
