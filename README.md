@@ -1,4 +1,4 @@
-# 🧠 AI Meeting Assistant
+# 🧠 TwinMind-AI
 
 An intelligent meeting copilot that listens to conversations, generates real-time suggestions, and assists with contextual chat responses.
 
