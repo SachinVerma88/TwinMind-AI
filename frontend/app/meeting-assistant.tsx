@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChatPanel } from "@/components/ChatPanel";
 import { FloatingMicButton } from "@/components/FloatingMicButton";
 import { Header } from "@/components/Header";
-import { SettingsModal } from "@/components/SettingsModal";
 import { SuggestionsPanel } from "@/components/SuggestionsPanel";
 import { TranscriptPanel } from "@/components/TranscriptPanel";
 
@@ -20,7 +19,6 @@ export function MeetingAssistant() {
         <ChatPanel />
       </main>
       <FloatingMicButton />
-      <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
     </div>
   );
 }

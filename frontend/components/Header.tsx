@@ -33,7 +33,6 @@ export function Header({ onOpenSettings }: HeaderProps) {
         ) : null}
         <button
           type="button"
-          onClick={onOpenSettings}
           className="rounded-xl p-2 text-on-surface/70 transition-colors hover:bg-surface-container-low/80 active:scale-95"
           aria-label="Settings"
         >
