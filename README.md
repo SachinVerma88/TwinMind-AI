@@ -99,7 +99,7 @@ cp .env.example .env
 Add your API key:
 
 ```env
-GROQ_API_KEY=your_api_key_here
+EXTERNAL_API_KEY=your_api_key_here
 ```
 
 ---
@@ -154,6 +154,7 @@ Update API URL:
 
 ```env
 NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
+NEXT_PUBLIC_API_KEY= Same API key that has been added to backend .env
 ```
 
 ---
